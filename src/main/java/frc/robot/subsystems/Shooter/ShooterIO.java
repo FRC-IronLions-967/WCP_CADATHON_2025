@@ -8,16 +8,16 @@ import org.littletonrobotics.junction.AutoLog;
 
 /** Add your docs here. */
 public interface ShooterIO {
-    @AutoLog
-    public static class ShooterIOInputs {
-        public double shooterAngle;
-        public double shooterSpeed;
-        public double feederSpeed;
-    }
+  @AutoLog
+  public static class ShooterIOInputs {
+    public double shooterAngle;
+    public double shooterSpeed;
+    public double feederSpeed;
+  }
 
-    public default void updateInputs(ShooterIOInputs inputs) {}
+  public default void updateInputs(ShooterIOInputs inputs) {}
 
-    public default void moveShooter(double angle) {}
+  public default void moveShooter(double angle) {}
 
-    public default void runShooter(double speed) {}
+  public default void runShooter(double speed) {}
 }

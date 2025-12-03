@@ -4,6 +4,7 @@
 
 package frc.robot.subsystems.panelArm;
 
+import com.revrobotics.spark.SparkBase.ControlType;
 import com.revrobotics.spark.SparkBase.PersistMode;
 import com.revrobotics.spark.SparkBase.ResetMode;
 import com.revrobotics.spark.SparkClosedLoopController;
@@ -66,5 +67,15 @@ public class PanelArmIOSpark implements PanelArmIO {
     inputs.hasPanelInArm = panelArmLimitSwitch.getAsBoolean();
     inputs.manipulatorSpeed = panelManipulator.getEncoder().getVelocity();
     inputs.armAngle = arm.getAbsoluteEncoder().getPosition();
+  }
+
+  @Override
+  public void runManipulator(double speed) {
+    panelManipulatorController.setReference(speed, ControlType.kVelocity);
+  }
+
+  @Override
+  public void moveArm(double angle) {
+    armController.setReference(angle, ControlType.kPosition);
   }
 }

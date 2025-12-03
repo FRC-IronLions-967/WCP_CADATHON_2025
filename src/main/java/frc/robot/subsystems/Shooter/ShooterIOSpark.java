@@ -10,12 +10,10 @@ import com.revrobotics.spark.config.SparkFlexConfig;
 /** Add your docs here. */
 public class ShooterIOSpark implements ShooterIO {
 
-    private SparkFlex flyWheel;
-    private SparkFlexConfig flyWheelConfig;
-    private SparkFlex shooterArm;
-    private SparkFlex feeder;
+  private SparkFlex flyWheel;
+  private SparkFlexConfig flyWheelConfig;
+  private SparkFlex shooterArm;
+  private SparkFlex feeder;
 
-    public ShooterIOSpark() {
-
-    }
+  public ShooterIOSpark() {}
 }

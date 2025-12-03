@@ -4,7 +4,18 @@
 
 package frc.robot.subsystems.shooter;
 
+import com.revrobotics.spark.SparkFlex;
+import com.revrobotics.spark.config.SparkFlexConfig;
+
 /** Add your docs here. */
 public class ShooterIOSpark implements ShooterIO {
-    ShooterIOSpark
+
+    private SparkFlex flyWheel;
+    private SparkFlexConfig flyWheelConfig;
+    private SparkFlex shooterArm;
+    private SparkFlex feeder;
+
+    public ShooterIOSpark() {
+
+    }
 }

@@ -21,7 +21,13 @@ public class PanelArmConstants {
   public static final double armZeroOffset = 0.4;
   public static final double armPercentPower = 0.25;
 
+  public static final double panelArmIntakeSpeed = 1;
+  public static final double panelArmScoringSpeed = 1;
+  public static final boolean panelArmIntakeSpeedPositive = panelArmIntakeSpeed > 0;
+
   public static final double armIntakePosition = 220 * Math.PI / 180;
   public static final double armIntakeToFeederPosition = 15 * Math.PI / 180;
   public static final double armRestingPosition = 0 * Math.PI / 180;
+  public static final double armScoringPosition = 300 * Math.PI / 180;
+  public static final double armTolerance = 0.5;
 }

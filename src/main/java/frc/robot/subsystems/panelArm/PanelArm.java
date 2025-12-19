@@ -59,4 +59,54 @@ public class PanelArm extends SubsystemBase {
   public boolean hasPanelInArm() {
     return inputs.hasPanelInArm;
   }
+
+  public boolean isArmInPosition(double position) {
+    return position + PanelArmConstants.armTolerance < inputs.armAngle
+        || inputs.armAngle < position + PanelArmConstants.armTolerance;
+  }
+
+  private SystemState updateState() {
+    previousState = systemState;
+    return switch (wantedState) {
+      case IDLE:
+        yield SystemState.IDLE;
+      case INTAKING:
+        if (hasPanelInArm()) yield SystemState.SCORING;
+        yield SystemState.INTAKING;
+      case SCORING:
+        if (!isArmInPosition(PanelArmConstants.armScoringPosition)) {
+          yield systemState.SCORING;
+        }
+        yield systemState.EJECTING;
+      case RESTING:
+        yield systemState.RESTING;
+    };
+  }
+
+  private void applyState() {
+    switch (systemState) {
+      case IDLE:
+        break;
+      case INTAKING:
+        armSetPosition = PanelArmConstants.armIntakePosition;
+        manipulatorSetSpeed = PanelArmConstants.panelArmIntakeSpeed;
+        break;
+      case SCORING:
+        armSetPosition = PanelArmConstants.armScoringPosition;
+        manipulatorSetSpeed = 0.0;
+        break;
+      case EJECTING:
+        armSetPosition = PanelArmConstants.armScoringPosition;
+        manipulatorSetSpeed = PanelArmConstants.panelArmScoringSpeed;
+        break;
+      case RESTING:
+        armSetPosition = PanelArmConstants.armRestingPosition;
+        manipulatorSetSpeed = 0.0;
+        break;
+    }
+  }
+
+  public void setWantedState(WantedState wantedState) {
+    this.wantedState = wantedState;
+  }
 }

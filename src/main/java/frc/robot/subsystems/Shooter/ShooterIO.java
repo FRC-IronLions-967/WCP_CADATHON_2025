@@ -13,6 +13,8 @@ public interface ShooterIO {
     public double shooterAngle;
     public double shooterSpeed;
     public double feederSpeed;
+    public boolean hasObjectInShooter = false;
+    public boolean hasObjectInFeeder = false;
   }
 
   public default void updateInputs(ShooterIOInputs inputs) {}
@@ -20,4 +22,6 @@ public interface ShooterIO {
   public default void moveShooter(double angle) {}
 
   public default void runShooter(double speed) {}
+
+  public default void runFeeder(double speed) {}
 }
